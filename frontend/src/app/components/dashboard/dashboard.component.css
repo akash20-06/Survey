@@ -1,0 +1,77 @@
+/* Global styling for the dashboard */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #4CAF50; /* Header background color */
+    color: #fff; /* Text color */
+  }
+  
+  .create-survey-btn {
+    background-color: #f44336; /* Button background color */
+    color: #fff; /* Button text color */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .create-survey-btn:hover {
+    background-color: #e53935; /* Hover color */
+  }
+  
+  .dashboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .survey-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    padding: 20px;
+    transition: transform 0.3s;
+  }
+  
+  .survey-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .survey-card h3 {
+    margin-top: 0;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  /* Responsive layout adjustments */
+  @media (max-width: 768px) {
+    .dashboard-container {
+      justify-content: flex-start;
+    }
+  }
+  .logout-btn {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px; /* Adjust spacing as needed */
+  }
+  
+  .logout-btn:hover {
+    background-color: #e53935;
+  }
+  

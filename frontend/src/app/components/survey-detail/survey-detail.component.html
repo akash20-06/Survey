@@ -1,0 +1,31 @@
+<div *ngIf="survey" class="survey-detail">
+    <h2 class="survey-title">{{ survey.surveyName }}</h2>
+    <p class="survey-description">{{ survey.surveyDescription }}</p>
+    
+    <table class="survey-table">
+      <thead>
+        <tr>
+          <th>Question Type</th>
+          <th>Question Label</th>
+          <th>Question Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let question of survey.questions">
+          <td>{{ question.type }}</td>
+          <td>{{ question.label }}</td>
+          <td>
+            <div *ngIf="question.options && question.options.length > 0; else empty">
+              <ul class="options-list">
+                <li *ngFor="let option of question.options" class="option-item">
+                  {{ option }}
+                </li>
+              </ul>
+            </div>
+            <ng-template #empty>-</ng-template>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
