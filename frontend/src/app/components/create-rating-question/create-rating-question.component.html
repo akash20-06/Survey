@@ -8,7 +8,7 @@
   
       <div>
         <label for="ratingScale">Rating Scale</label>
-        <select id="ratingScale" name="ratingScale" [(ngModel)]="responses" required>
+        <select id="ratingScale" name="ratingScale" [(ngModel)]="ratingScale" required>
           <option value="" disabled>Select rating scale</option>
           <option *ngFor="let scale of ratingScales" [value]="scale">{{ scale }}</option>
         </select>

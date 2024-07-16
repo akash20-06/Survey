@@ -27,15 +27,17 @@ export class QuestionTypeService {
   setResponses(responses: string[]): void {
     this.responses = responses;
   }
-  setResponsesRating(responses: string): void {
-    this.responses[0] = responses;
+
+  setResponsesRating(response: string): void {
+    this.responses = [response];  // Ensure only one rating response is stored
   }
 
   getResponses(): string[] {
     return this.responses;
   }
+
   getResponsesRating(): string {
-    return this.responses[0];
+    return this.responses.length > 0 ? this.responses[0] : '';
   }
 
   addResponse(response: string): void {

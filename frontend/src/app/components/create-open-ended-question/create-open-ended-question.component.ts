@@ -28,7 +28,7 @@ export class CreateOpenEndedQuestionComponent {
   onSaveAndContinue() {
     this.questionTypeService.setQuestionLabel(this.question.questionText);
     
-   const Question={questionType:this.questionTypeService.getQuestionType,questionLabel:this.question.questionText}
+   const Question={type:'open',label:this.question.questionText}
     this.surveyService.addQuestion(Question);
     this.router.navigate(['/question-type-selection']);
   }

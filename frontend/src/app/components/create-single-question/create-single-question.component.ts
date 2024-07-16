@@ -31,8 +31,8 @@ export class CreateSingleQuestionComponent {
     this.questionTypeService.setResponses(this.responses);
 
     const question = {
-      questionType: this.questionTypeService.getQuestionType(),  
-      questionLabel: this.question.questionText,
+      type: this.questionTypeService.getQuestionType(),  
+      label: this.question.questionText,
       options: this.responses
     };
 

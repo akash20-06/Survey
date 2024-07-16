@@ -8,19 +8,15 @@ import { OwnerService } from '../../owner.service';
 @Component({
   selector: 'app-create-rating-question',
   templateUrl: './create-rating-question.component.html',
-  styleUrl: './create-rating-question.component.css'
+  styleUrls: ['./create-rating-question.component.css']
 })
 export class CreateRatingQuestionComponent {
   question = {
     questionText: ''
   };
-  newResponse: string = '';
-  responses: string[] = [];
-
-  ratingScales = [5, 6, 7, 8, 9, 10]; 
-
+  ratingScale: number |undefined;  // Default rating scale
   errorMessage: string = '';
-
+  ratingScales=[1,2,3,4,5];
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -28,25 +24,32 @@ export class CreateRatingQuestionComponent {
     private surveyService: SurveyService,
     private ownerService: OwnerService
   ) {}
+
   onSaveAndContinue() {
+    this.questionTypeService.setQuestionType('rating');
     this.questionTypeService.setQuestionLabel(this.question.questionText);
-    this.questionTypeService.setResponses(this.responses);
-   const question={questionType:this.questionTypeService.getQuestionType,questionLabel:this.questionTypeService.getQuestionLabel,options:this.questionTypeService.getResponses}
+    if(this.ratingScale!=undefined)
+     this.questionTypeService.setResponsesRating(this.ratingScale.toString());
+
+    const question = {
+      type: this.questionTypeService.getQuestionType(),
+      label: this.questionTypeService.getQuestionLabel(),
+      options: [this.questionTypeService.getResponsesRating()]
+    };
+
     this.surveyService.addQuestion(question);
     this.router.navigate(['/question-type-selection']);
   }
+
   onFinish() {
-    this.questionTypeService.setQuestionLabel(this.question.questionText);
-    this.questionTypeService.setResponses(this.responses);
-   const question={questionType:this.questionTypeService.getQuestionType,questionLabel:this.questionTypeService.getQuestionLabel,options:this.questionTypeService.getResponses}
-    this.surveyService.addQuestion(question);
-  
+    this.onSaveAndContinue();  // Save the current question before finishing
+
     const survey = {
-      email: this.ownerService.getEmail(),  
-      surveyName: this.surveyService.getSurveyName(),  
-      surveyDescription: this.surveyService.getSurveyDesc(),  
-      uptime: this.surveyService.getUptime(),  
-      questions: this.surveyService.getQuestions()  
+      email: this.ownerService.getEmail(),
+      surveyName: this.surveyService.getSurveyName(),
+      surveyDescription: this.surveyService.getSurveyDesc(),
+      uptime: this.surveyService.getUptime(),
+      questions: this.surveyService.getQuestions()
     };
 
     const headers = new HttpHeaders({
@@ -56,7 +59,7 @@ export class CreateRatingQuestionComponent {
     this.http.post('http://localhost:9090/api/users/create_user', survey, { headers, responseType: 'text' })
       .subscribe(
         response => {
-          alert(response); 
+          alert(response);
           this.router.navigate(['/dashboard']);
         },
         error => {
@@ -73,7 +76,6 @@ export class CreateRatingQuestionComponent {
     this.question = {
       questionText: ''
     };
-    this.newResponse = '';
-    this.responses = [];
+    this.ratingScale=undefined;  // Reset to default rating scale
   }
 }

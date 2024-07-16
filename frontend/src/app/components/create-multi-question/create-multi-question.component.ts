@@ -31,7 +31,7 @@ export class CreateMultiQuestionComponent {
   onSaveAndContinue() {
     this.questionTypeService.setQuestionLabel(this.question.questionText);
     this.questionTypeService.setResponses(this.responses);
-   const Question={questionType:this.questionTypeService.getQuestionType,questionLabel:this.question.questionText,options:this.responses}
+   const Question={type:'multi',label:this.question.questionText,options:this.responses}
     this.surveyService.addQuestion(Question);
     this.router.navigate(['/question-type-selection']);
   }

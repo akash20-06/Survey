@@ -14,6 +14,8 @@ import { LoginComponent } from './components/login/login.component';
 import { SingleQuestionComponent } from './components/single-question/single-question.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SurveyDetailComponent } from './components/survey-detail/survey-detail.component';
+import { RatingQuestionComponent } from './components/rating-ques/rating-ques.component';
+import { OpenEndedQuestionComponent } from './components/open-ended-question/open-ended-question.component';
 const routes: Routes = [{ path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'create-survey', component: CreateSurveyComponent },
@@ -26,7 +28,10 @@ const routes: Routes = [{ path: '', redirectTo: '/login', pathMatch: 'full' },
 {path:'chart',component:UserChartComponent},
 {path:'dashboard',component:DashboardComponent},
 {path:'single-question',component:SingleQuestionComponent} ,
-{ path: 'survey/:surveyName', component: SurveyDetailComponent }];
+{ path: 'survey/:surveyName', component: SurveyDetailComponent },
+{ path: 'rating-ques', component: RatingQuestionComponent},
+{ path: 'open-ended', component: OpenEndedQuestionComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
